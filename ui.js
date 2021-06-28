@@ -22,8 +22,6 @@ class UI{
     div.className = "alert alert-" + type
     div.setAttribute("role", "alert")
     div.textContent = message
-    // form.appendChild(br)
-    // form.appendChild(br2)
     hr.appendChild(div)
     setTimeout(() => {
       div.remove()
@@ -45,8 +43,4 @@ class UI{
     }
     
   }
-
 }
-
-
-

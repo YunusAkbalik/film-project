@@ -5,10 +5,6 @@ const urlInput = document.getElementById("url")
 const filmList = document.getElementById("films")
 const clearFilmsButton = document.getElementById("clear-films")
 const filterInput = document.getElementById("filter")
-// UI objesini başlatma
-const ui = new UI()
-const storage = new Storage()
-const filter = new Filter()
 // Tüm eventleri yükkleme
 eventListeners()
 
@@ -26,38 +22,38 @@ function addFilm(e) {
     const urlValue = urlInput.value
 
     if (titleValue === "" || directorValue === "" || urlValue === "") {
-        ui.showAlert("danger", "Tüm alanları doldurun...")
+        UI.showAlert("danger", "Tüm alanları doldurun...")
     }
     else {
         // Yeni film
         const film = new Film(titleValue, directorValue, urlValue)
-        ui.addFilmToUI(film) // Arayüze film ekleme
-        storage.addFilmToStorage(film)
-        ui.clearInputs(titleInput, directorInput, urlInput)
-        ui.showAlert("success", "Film eklendi")
+        UI.addFilmToUI(film) // Arayüze film ekleme
+        Storage.addFilmToStorage(film)
+        UI.clearInputs(titleInput, directorInput, urlInput)
+        UI.showAlert("success", "Film eklendi")
     }
 
     e.preventDefault()
 }
 function loadFilms() {
-    let films = storage.getFilmsFromStorage()
+    let films = Storage.getFilmsFromStorage()
     films.forEach(x => {
-        ui.addFilmToUI(x)
+        UI.addFilmToUI(x)
     });
 }
 function deleteFilm(e) {
     if (e.target.id === "delete-film") {
-        ui.deleteFilmFromUI(e.target.parentElement.parentElement)
-        storage.deleteFilmFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent)
-        ui.showAlert("info", "Film başarıyla silindi")
+        UI.deleteFilmFromUI(e.target.parentElement.parentElement)
+        Storage.deleteFilmFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent)
+        UI.showAlert("info", "Film başarıyla silindi")
     }
 }
 function deleteAllFilm() {
     if (confirm("Tüm filmleri silmek istediğinize emin misiniz ?")) {
-        ui.deleteAllFromUI()
-        storage.deleteAllFromStorage()
+        UI.deleteAllFromUI()
+        Storage.deleteAllFromStorage()
     }
 }
 function filterF(e) {
-    filter.go(filterInput.value)
+    Filter.go(filterInput.value)
 }

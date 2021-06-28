@@ -52,17 +52,12 @@ function deleteFilm(e) {
         ui.showAlert("info", "Film başarıyla silindi")
     }
 }
-
 function deleteAllFilm() {
     if (confirm("Tüm filmleri silmek istediğinize emin misiniz ?")) {
         ui.deleteAllFromUI()
         storage.deleteAllFromStorage()
-        ui.showAlert("success", "Tüm filmler başarıyla silindi")
     }
-
-
 }
-
 function filterF(e) {
     filter.go(filterInput.value)
 }

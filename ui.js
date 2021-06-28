@@ -33,7 +33,14 @@ UI.prototype.deleteFilmFromUI = function (element) {
 }
 UI.prototype.deleteAllFromUI = function () {
   const filmList = document.querySelector("#films")
-  while (filmList.firstElementChild !== null) {
-    filmList.firstElementChild.remove()
+  if (filmList.firstElementChild === null){
+    this.showAlert("danger","Silinecek bir film bulunamadı")
   }
+  else{
+    while (filmList.firstElementChild !== null) {
+      filmList.firstElementChild.remove()
+    }
+    this.showAlert("success","Tüm filmler başarıyla silindi")
+  }
+  
 }
